@@ -1,5 +1,4 @@
 import React from 'react'
-import {useEffect} from "react";
 import {connect} from 'react-redux'
 
 //Reducers
@@ -16,9 +15,6 @@ const mapStateToProps = ({date}) => ({
 export default connect(mapStateToProps, {signInUresrTc,setLoading})( ({signInUresrTc,loading,setLoading}) => {
 
 
-    useEffect(() => {
-
-    }, [])
 
     return <SignIn signInUresrTc={signInUresrTc} loading={loading} setLoading={setLoading}/>
 })

@@ -6,6 +6,7 @@ const SET_ERROR_MESSAGE = 'SET_ERROR_MESSAGE'
 
 
 
+
 let initialState = {
     dreams: 'My dreams',
     user:{},
@@ -41,6 +42,7 @@ export const MainReducer = (state = initialState, action) => {
 export const setUser = user => ({type: SET_USER, user});
 export const setLoading = loading => ({type: SET_LOADING, loading});
 export const setErrorMessage = errorMessage => ({type: SET_ERROR_MESSAGE, errorMessage});
+export const setView = view => ({type: SET_VIEW, view});
 
 
 export const signInUresrTc = (userProfile) => async (dispatch, getState) => {
@@ -53,10 +55,6 @@ export const signInUresrTc = (userProfile) => async (dispatch, getState) => {
                 dispatch(setLoading(false))
 
               })
-
-    
-
-
     
 } 
 
@@ -67,3 +65,20 @@ export const regUserTC = (userProfile) => async (dispatch, getState) => {
 
     
 } 
+
+export const userUpadateTC = (newProfile) => async (dispatch,getState) => {
+    dispatch(setLoading(true))
+    await Cube.UpDate(newProfile)
+          .then(() => {
+            dispatch(setUser(newProfile))
+            dispatch(setLoading(false))
+          })
+}
+
+export const getMainState = () => async getState => {
+    console.log(getState())
+}
+
+
+
+

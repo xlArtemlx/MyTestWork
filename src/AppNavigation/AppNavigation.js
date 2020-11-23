@@ -1,8 +1,9 @@
 import React from 'react';
-import {View, Text} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import {Profile,SignUp,SignIn} from '../Screens'
+import {SignUp,SignIn,EditPage} from '../Screens'
+import {TabsNavigator} from '../Navigators/TabsNavigator'
+
 
 const Stack = createStackNavigator();
 
@@ -30,12 +31,19 @@ export const AppNavigation = () => {
         options={{
           title: 'Вход',
         }}/>
+          <Stack.Screen 
+        name="EditPage" 
+        component={EditPage}
+        options={{
+          title: 'Вход',
+        }}/>
 
         <Stack.Screen 
         name="Profile" 
-        component={Profile}
+        component={TabsNavigator}
         options={{
           title: 'Профиль Пользователя',
+          headerShown: false
         }}/>
       </Stack.Navigator>
     </NavigationContainer>

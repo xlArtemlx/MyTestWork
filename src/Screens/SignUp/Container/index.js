@@ -1,5 +1,4 @@
 import React from 'react'
-import {useEffect} from "react";
 import {connect} from 'react-redux'
 
 //Reducers
@@ -9,15 +8,10 @@ import SignUp from "../index";
 
 
 const mapStateToProps = ({date}) => ({
-    dreams: date.dreams
+    user: date.user
 })
 
-export default connect(mapStateToProps, {setUserTC,regUserTC})( ({dreams,setUserTC,regUserTC}) => {
+export default connect(mapStateToProps, {setUserTC,regUserTC})( ({setUserTC,regUserTC}) => {
 
-
-    useEffect(() => {
-
-    }, [])
-
-    return <SignUp dreams={dreams} setUserTC={setUserTC} regUserTC={regUserTC}/>
+    return <SignUp setUserTC={setUserTC} regUserTC={regUserTC}/>
 })

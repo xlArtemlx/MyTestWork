@@ -35,6 +35,13 @@ class Cube {
         return await ConnectyCube.login(user)
     }
 
+    async UpDate(user){
+        return await ConnectyCube.users.update(user)
+    }
+    async logout() {
+        ConnectyCube.logout();
+    }
+
         // return AsyncStorage.setItem()
 
     

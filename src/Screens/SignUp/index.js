@@ -1,8 +1,9 @@
-import React, {useCallback, useState} from 'react';
-import {View, Text,TextInput,TouchableOpacity,CheckBox,ScrollView} from 'react-native';
+import React, { useState} from 'react';
+import {View, Text,TouchableOpacity,ScrollView} from 'react-native';
+import CheckBox from '@react-native-community/checkbox';
 import { useNavigation } from '@react-navigation/native';
-import Cube from '../../Cube'
-import Icon from 'react-native-vector-icons/FontAwesome';
+
+
 
 import { Input,Button} from 'react-native-elements';
 
@@ -10,7 +11,7 @@ import {styles} from './styles';
 
 
 
-const SignUp = ({dreams,setUserTC,regUserTC}) => {
+const SignUp = ({regUserTC}) => {
     const navigation = useNavigation()
 
     const [newUser,setNewUser] = useState({
@@ -76,11 +77,6 @@ const SignUp = ({dreams,setUserTC,regUserTC}) => {
       
     }
 
-    const passVisible = () => {
-        setVisible(!visible)
-        setErrorText('')
-    }
-
     const passConfirm = pass => {
         setComfirm({
             ...comfirm,
@@ -123,23 +119,18 @@ const SignUp = ({dreams,setUserTC,regUserTC}) => {
             navigation.navigate('SingIn')
             const userProfile = {...newUser}
             regUserTC(userProfile)
+            setNewUser({
+                password: '',
+                login:'',
+                full_name:'',
+            })
+            setComfirm({
+                confirm_password: '',
+            });
         }
 
 
-    }
-    const func = async () => {
-        const user = {   password: 'qwerty123',
-        full_name: 'Gomer Simpson',
-        login:'Simpy'}
-
-
-        await Cube.SignUp(user)
-        await Cube.SignIn({login:'Simpy'})
-    }
-
- 
- 
-    
+    }    
 
 
     return (
@@ -148,22 +139,17 @@ const SignUp = ({dreams,setUserTC,regUserTC}) => {
 {/* name */}
              <Input
                     style={validForm.full_name ? null : {backgroundColor:'#F08080'}}
-                    autoCompleteType = 'username'
-                    onFocus={fullNameChange}
                     label="Полное имя"
                     placeholder="Введите имя"
                     onChangeText={name => fullNameChange(name)}
-                    defaultValue={''}
                 />
 
 {/*Login*/}
                 <Input
                     style={validForm.login? null : {backgroundColor:'#F08080'}}
-                    autoCompleteType = 'username'
                     label="Логин"
                     placeholder="Введите логин"
                     onChangeText={log => loginChange(log)}
-                    defaultValue={''}
                 />
 
 {/* Password */}
@@ -172,11 +158,8 @@ const SignUp = ({dreams,setUserTC,regUserTC}) => {
                     placeholder="Введите пароль"
                     label="Пароль"
                     secureTextEntry={visible ? false : true}
-                    onFocus={passChange}
                     style={validForm.password ? null : {backgroundColor:'#F08080'}}
-                    autoCapitalize="none"
                     onChangeText={(pass) => passChange(pass)}
-                    defaultValue={''}
                 />
             </View>
 
@@ -187,7 +170,6 @@ const SignUp = ({dreams,setUserTC,regUserTC}) => {
                     placeholder="Введите пароль"
                     label="Подтвердите пароль"
                     secureTextEntry={visible ? false : true}
-                    onFocus={passConfirm}
                     style={validForm.confirm_password ? null : {backgroundColor:'#F08080'}}
                     onChangeText={(pass) => passConfirm(pass)}
     
@@ -196,9 +178,10 @@ const SignUp = ({dreams,setUserTC,regUserTC}) => {
 
 
             <View style={{justifyContent:'flex-start',flexDirection:'row'}}>
-                <CheckBox
-                    value={visible}
-                    onValueChange={setVisible}
+                    <CheckBox
+                        disabled={false}
+                        value={visible}
+                        onValueChange={(newValue) => setVisible(newValue)}
                     />
                 <Text style={{alignSelf:'center',justifyContent:'center'}}> Показать пароль</Text>
             </View>
@@ -222,6 +205,7 @@ const SignUp = ({dreams,setUserTC,regUserTC}) => {
         
 
             />
+            
 
             { 
             errorText ? <View style={styles.errorContainer}>

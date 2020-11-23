@@ -1,8 +1,8 @@
 import React,{useState} from 'react';
-import {View, Text,CheckBox,ActivityIndicator,TouchableOpacity} from 'react-native';
+import {View, Text,ActivityIndicator,TouchableOpacity,Keyboard} from 'react-native';
+import CheckBox from '@react-native-community/checkbox';
 import { Input,Button} from 'react-native-elements';
 import { useNavigation } from '@react-navigation/native';
-import {useSelector} from "react-redux";
 import {styles} from './styles';
 
 
@@ -39,12 +39,13 @@ import {styles} from './styles';
         const userProfile = {...loginUser}
         await signInUresrTc(userProfile)
               .then(() => {
-                navigation.navigate('Profile')
                 setLoginUser({
                     ...loginUser,
                     password:'',
                 })
+                navigation.navigate('Profile')
                 setErrorText('')
+                Keyboard.dismiss()
               })
               .catch((e)=>{
                 setErrorText('Неверный логин или пароль')
@@ -77,10 +78,11 @@ import {styles} from './styles';
                     secureTextEntry={visible ? false : true}
                 />
                 <View style={{justifyContent:'flex-start',flexDirection:'row'}}>
-                    <CheckBox
+                      <CheckBox
+                        disabled={false}
                         value={visible}
-                        onValueChange={setVisible}
-                        />
+                        onValueChange={(newValue) => setVisible(newValue)}
+                    />
                     <Text style={{alignSelf:'center',justifyContent:'center'}}> Показать пароль</Text>
                 </View>
 
