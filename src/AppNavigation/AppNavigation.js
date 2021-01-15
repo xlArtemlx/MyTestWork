@@ -11,32 +11,34 @@ const Stack = createStackNavigator();
 
 export const AppNavigation = () => {
   return (
-    <NavigationContainer>
+    <NavigationContainer >
       <Stack.Navigator
         initialRouteName="SignIn"
         screenOptions={{ gestureEnabled: true }}
-      >
-        <Stack.Screen
-         name="SignUp" 
-         component={SignUp}
-         options={{
-          title: 'Регистрация',
-        }}/>
-       
         
-
+      >
         <Stack.Screen 
         name="SingIn" 
         component={SignIn}
         options={{
-          title: 'Вход',
+          title: 'Войти',
+        }}
+        
+        
+        />
+
+        
+        <Stack.Screen
+         name="SignUp" 
+         component={SignUp}
+         options={{
+          title: 'Войти',
         }}/>
+       
           <Stack.Screen 
         name="EditPage" 
         component={EditPage}
-        options={{
-          title: 'Вход',
-        }}/>
+      />
 
         <Stack.Screen 
         name="Profile" 

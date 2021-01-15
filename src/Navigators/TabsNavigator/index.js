@@ -38,7 +38,7 @@ export const TabsNavigator = () => {
                 }}
             />
             <Screen
-                name="EditPage"
+                name="Edit Page"
                 component={EditPage}
                 options={{
                     tabBarIcon: ({focused}) => {
@@ -48,12 +48,12 @@ export const TabsNavigator = () => {
                 }}
             />
             <Screen
-                name="Settings"
+                name="News"
                 component={Settings}
                 options={{
                     tabBarIcon: ({focused}) => {
                         let icStyle = focused ?  styles.focus :  styles.unFocus
-                        return <Image style={{...styles.Icon, ...icStyle}} source={require('../../Images/icons8-поддержка-48.png')}/>
+                        return <Image style={{...styles.Icon, ...icStyle}} source={require('../../Images/icons8-новости-26.png')}/>
                     },
                 }}
                 

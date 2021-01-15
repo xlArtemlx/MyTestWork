@@ -1,10 +1,11 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import {Provider} from 'react-redux';
 import store from "./src/Redux/store/store";
 import {
   StyleSheet,
   View,
 } from 'react-native';
+
 
 import {AppNavigation} from './src/AppNavigation/AppNavigation';
 

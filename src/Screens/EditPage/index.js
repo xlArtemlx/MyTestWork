@@ -1,9 +1,10 @@
-import React,{useState,useCallback} from 'react';
+import React,{useState,useEffect} from 'react';
 import {View, Text,ScrollView,KeyboardAvoidingView,Modal,TouchableOpacity,ActivityIndicator} from 'react-native';
 import { Input,Button} from 'react-native-elements';
 import isEmail from 'validator/es/lib/isEmail';
 import {useSelector} from "react-redux";
 import { useNavigation } from '@react-navigation/native';
+
 
 
 import {styles} from './styles';
@@ -125,6 +126,7 @@ const EditPage = ({user,userUpadateTC,setLoading}) => {
                     label="FaceBook ID"
                     placeholder="Редактировать ID"
                     onChangeText={id => changeFaceBookId(id)}
+                    keyboardType='numeric'
                     defaultValue={updateUser.facebook_id || ''}
                 />
 
@@ -132,6 +134,7 @@ const EditPage = ({user,userUpadateTC,setLoading}) => {
                     label="Twitter ID"
                     placeholder="Редактировать ID"
                     onChangeText={id => changeTwitter(id)}
+                    keyboardType='numeric'
                     defaultValue={updateUser.twitter_id || ''}
                 />
 

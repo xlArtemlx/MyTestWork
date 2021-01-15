@@ -12,9 +12,13 @@ const mapStateToProps = ({date}) => ({
     loading: date.loading,
 })
 
-export default connect(mapStateToProps, {signInUresrTc,setLoading})( ({signInUresrTc,loading,setLoading}) => {
+export default connect(mapStateToProps, {signInUresrTc,setLoading},)( ({signInUresrTc,loading,setLoading}) => {
 
 
 
-    return <SignIn signInUresrTc={signInUresrTc} loading={loading} setLoading={setLoading}/>
+    return <SignIn 
+    signInUresrTc={signInUresrTc} 
+    loading={loading} 
+    setLoading={setLoading}
+    />
 })

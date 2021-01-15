@@ -1,7 +1,8 @@
-import React, { useState} from 'react';
+import React, { useState,useEffect} from 'react';
 import {View, Text,TouchableOpacity,ScrollView} from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
 import { useNavigation } from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 
 
@@ -13,6 +14,17 @@ import {styles} from './styles';
 
 const SignUp = ({regUserTC}) => {
     const navigation = useNavigation()
+
+    useEffect(()=>{
+        setNewUser({
+            password: '',
+            login:'',
+            full_name:'',
+        })
+        setComfirm({
+            confirm_password: '',
+        });
+    },[])
 
     const [newUser,setNewUser] = useState({
         password: '',
@@ -116,17 +128,25 @@ const SignUp = ({regUserTC}) => {
                 confirm_password: false,
             })
         }else {
-            navigation.navigate('SingIn')
             const userProfile = {...newUser}
             regUserTC(userProfile)
-            setNewUser({
-                password: '',
-                login:'',
-                full_name:'',
+            .then(()=>{
+                setNewUser({
+                    password: '',
+                    login:'',
+                    full_name:'',
+                })
+                setComfirm({
+                    confirm_password: '',
+                });
+                navigation.navigate('SingIn')
             })
-            setComfirm({
-                confirm_password: '',
-            });
+            .catch(e =>{
+                if(e.info.errors.login){
+                    setErrorText('Пользователь с таким логином уже зарегестрирован')
+                }
+            })
+
         }
 
 
@@ -142,6 +162,7 @@ const SignUp = ({regUserTC}) => {
                     label="Полное имя"
                     placeholder="Введите имя"
                     onChangeText={name => fullNameChange(name)}
+                    defaultValue={newUser.full_name}
                 />
 
 {/*Login*/}
@@ -150,6 +171,7 @@ const SignUp = ({regUserTC}) => {
                     label="Логин"
                     placeholder="Введите логин"
                     onChangeText={log => loginChange(log)}
+                    defaultValue={newUser.login}
                 />
 
 {/* Password */}
@@ -160,6 +182,7 @@ const SignUp = ({regUserTC}) => {
                     secureTextEntry={visible ? false : true}
                     style={validForm.password ? null : {backgroundColor:'#F08080'}}
                     onChangeText={(pass) => passChange(pass)}
+                    defaultValue={newUser.password}
                 />
             </View>
 
@@ -172,6 +195,7 @@ const SignUp = ({regUserTC}) => {
                     secureTextEntry={visible ? false : true}
                     style={validForm.confirm_password ? null : {backgroundColor:'#F08080'}}
                     onChangeText={(pass) => passConfirm(pass)}
+                    defaultValue={comfirm.confirm_password}
     
                 />
             </View>
@@ -197,14 +221,6 @@ const SignUp = ({regUserTC}) => {
                     
                 />
             </View>
-
-            <Button
-                title="Уже Зарегестрированы?"
-                onPress={() => navigation.navigate('SingIn')}
-                type="outline"
-        
-
-            />
             
 
             { 

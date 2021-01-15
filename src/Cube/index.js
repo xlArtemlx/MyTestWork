@@ -1,4 +1,5 @@
 import ConnectyCube from "react-native-connectycube";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 
@@ -39,6 +40,7 @@ class Cube {
         return await ConnectyCube.users.update(user)
     }
     async logout() {
+        await AsyncStorage.setItem('@avtoLogin', '')
         ConnectyCube.logout();
     }
 
