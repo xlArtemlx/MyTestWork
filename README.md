@@ -8,4 +8,31 @@
 ***
 страница News пустая
 ***
+Технологии:
+React-Native,
+Redux,
+redux-thunk,
+AppNavigation
+***
+Npm Пакеты:
+"@react-native-async-storage/async-storage"
+"@react-native-community/checkbox"
+"@react-native-community/masked-view"
+"@react-navigation/bottom-tabs"
+"@react-navigation/core"
+"@react-navigation/native"
+"@react-navigation/stack"
+"react-native-connectycube"
+"react-native-elements"
+"react-native-gesture-handler"
+"react-native-reanimated"
+"react-native-safe-area-context"
+"react-native-screens"
+"react-native-splash-screen"
+"react-native-vector-icons"
+"react-redux"
+"redux"
+"redux-thunk"
+"validator"
+
  
